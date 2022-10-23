@@ -49,3 +49,10 @@ while player1.lives != 0 and player2.lives != 0
   choose_player = (choose_player + 1) % 2
 end
 
+if player1.lives == 0 
+  puts "Player 2 wins the game"
+  puts "==== GAME OVER ===="
+elsif player2.lives == 0
+  puts "Player 1 wins the game"
+  puts "==== GAME OVER ===="
+end
