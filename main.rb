@@ -31,16 +31,21 @@ player2 = Person.new("Player 2")
 
 puts "Let the game begin!"
 
-while player1.lives != 0 
+choose_player = 0
+
+while player1.lives != 0 and player2.lives != 0
+  player = (choose_player == 0) ? player1 : player2
   question = Question.new(rand(0..10), rand(0..10))
-  puts "#{player1.name} : #{question.ask_question}"
+  puts "#{player.name} : #{question.ask_question}"
   answer = gets.chomp.to_i
   if answer != question.right_answer
     puts "Seriously! No!"
-    player1.lives -=1
+    player.lives -=1
     puts "P1: #{player1.lives} / 3 vs P2: #{player2.lives} / 3"
   else 
     puts "Yes! You are correct!!"
     puts "P1: #{player1.lives} / 3 vs P2: #{player2.lives} / 3"
   end
+  choose_player = (choose_player + 1) % 2
 end
+
