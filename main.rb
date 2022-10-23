@@ -1,10 +1,9 @@
 class Question
-  attr_accessor :num1, :num2, :answer
+  attr_accessor :num1, :num2
 
-  def initialize (num1, num2, answer)
+  def initialize (num1, num2)
     @num1 = num1
     @num2 = num2
-    @answer = answer
   end
 
   def ask_question
@@ -12,7 +11,7 @@ class Question
   end
 
   def right_answer
-    num1 + num2
+    num1.to_i + num2.to_i
   end
 
 end
@@ -30,4 +29,18 @@ end
 player1 = Person.new("Player 1")
 player2 = Person.new("Player 2")
 
-while 
+puts "Let the game begin!"
+
+while player1.lives != 0 
+  question = Question.new(rand(0..10), rand(0..10))
+  puts "#{player1.name} : #{question.ask_question}"
+  answer = gets.chomp.to_i
+  if answer != question.right_answer
+    puts "Seriously! No!"
+    player1.lives -=1
+    puts "P1: #{player1.lives} / 3 vs P2: #{player2.lives} / 3"
+  else 
+    puts "Yes! You are correct!!"
+    puts "P1: #{player1.lives} / 3 vs P2: #{player2.lives} / 3"
+  end
+end
